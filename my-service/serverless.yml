@@ -10,9 +10,9 @@ provider:
   # https://serverless.com/framework/docs/providers/google/guide/credentials/
   #
   # the path to the credentials file needs to be absolute
-  credentials: ~/.gcloud/keyfile.json
+  credentials: ~/.gcloud/keys/serverless-sample.json
 
-frameworkVersion: '2'
+frameworkVersion: "2"
 plugins:
   - serverless-google-cloudfunctions
 
