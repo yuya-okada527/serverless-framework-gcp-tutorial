@@ -20,4 +20,6 @@ def http(request):
 
 def pub_sub(event, context):
     print(f"event: {event}")
+    print(f"type(event): {type(event)}")
     print(f"context: {context}")
+    print(f"type(context): {type(context)}")
