@@ -7,4 +7,5 @@ def http(request):
         Response object using
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
-    return f'Hello World!'
+    name = request.args.get("name")
+    return f'Hello {name}!'

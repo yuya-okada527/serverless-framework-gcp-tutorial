@@ -44,3 +44,7 @@ functions:
 #      name: my-serverless-service-bucket
 #  imports:
 #    - path: my_template.jinja
+
+custom:
+  pythonRequirements:
+    pythonBin: python3
