@@ -16,3 +16,8 @@ def http(request):
     res = requests.get(url)
 
     return res.json()
+
+
+def pub_sub(event, context):
+    print(f"event: {event}")
+    print(f"context: {context}")
