@@ -1,3 +1,7 @@
+import requests
+
+URL = "https://yuya-okada.com/v1/movie/search?query="
+
 def http(request):
     """Responds to any HTTP request.
     Args:
@@ -7,5 +11,8 @@ def http(request):
         Response object using
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
-    name = request.args.get("name")
-    return f'Hello {name}!'
+    q = request.args.get("q")
+    url = URL + (q if q else "")
+    res = requests.get(url)
+
+    return res.json()
