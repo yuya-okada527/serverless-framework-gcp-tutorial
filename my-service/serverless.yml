@@ -28,11 +28,17 @@ functions:
     events:
       - http: path
   second:
-    handler: pub_sub
+    handler: publish
     events:
       - event:
           eventType: providers/cloud.pubsub/eventTypes/topic.publish
           resource: projects/ml-playground-306716/topics/sample-notification-topic
+  third:
+    handler: subscribe
+    events:
+      - event:
+          eventType: providers/cloud.pubsub/eventTypes/topic.publish
+          resource: projects/ml-playground-306716/topics/sample-publish-topic
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud
   # before deploying this service through Serverless

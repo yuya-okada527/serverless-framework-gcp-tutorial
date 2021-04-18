@@ -1,6 +1,10 @@
+import json
 import requests
+from google.cloud import pubsub
 
 URL = "https://yuya-okada.com/v1/movie/search?query="
+
+CLIENT: pubsub.PublisherClient = None
 
 def http(request):
     """Responds to any HTTP request.
@@ -18,8 +22,23 @@ def http(request):
     return res.json()
 
 
-def pub_sub(event, context):
-    print(f"event: {event}")
-    print(f"type(event): {type(event)}")
-    print(f"context: {context}")
-    print(f"type(context): {type(context)}")
+def publish(event, context):
+
+    # クライアントを初期化
+    global CLIENT
+    if not CLIENT:
+        CLIENT = pubsub.PublisherClient()
+
+    # メッセージとメタデータを作成
+    attributes = {
+        "bucket": event["attributes"]["bucketId"]
+    }
+    message = json.dumps(attributes).encode()
+
+    # パブリッシュ
+    topic = CLIENT.topic_path("ml-playground-306716", "sample-publish-topic")
+    CLIENT.publish(topic=topic, data=message, **attributes)
+
+
+def subscribe(event, context):
+    print(event)
